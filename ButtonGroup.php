@@ -27,6 +27,9 @@ class ButtonGroup extends Widget
 	/** @var array HTML-опции для DIV-контейнера группы */
 	public $containerOptions = [];
 
+	/** @var bool добавлять ли DIV.clearfix после группы */
+	public $addClearfix = true;
+
 
 	public function run()
 	{
@@ -67,6 +70,7 @@ class ButtonGroup extends Widget
 		$this->containerOptions['class'] .= ' btn-group '.$_sizeClass;
 		$this->containerOptions['role'] = 'group';
 
-		return !empty($out) ? (Html::tag('div', $out, $this->containerOptions).Html::tag('div', '', ['class' => 'clearfix'])) : '';
+		return !empty($out) ? (Html::tag('div', $out, $this->containerOptions).
+			($this->addClearfix ? Html::tag('div', '', ['class' => 'clearfix']) : '')) : '';
 	}
 }
