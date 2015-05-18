@@ -21,14 +21,11 @@ class Alert extends Widget
 		$html = '';
 
 		$s = Yii::$app->session;
-		$_ = $s->getFlash('success');
-		if($_) $html .= $this->_drawBox($_, 'success');
-		$_ = $s->getFlash('danger');
-		if($_) $html .= $this->_drawBox($_, 'danger');
-		$_ = $s->getFlash('info');
-		if($_) $html .= $this->_drawBox($_, 'info');
-		$_ = $s->getFlash('warning');
-		if($_) $html .= $this->_drawBox($_, 'warning');
+		$_ = $s->getFlash('success'); if($_) $html .= $this->_drawBox($_, 'success');
+		$_ = $s->getFlash('danger'); if($_) $html .= $this->_drawBox($_, 'danger');
+		$_ = $s->getFlash('error'); if($_) $html .= $this->_drawBox($_, 'danger');
+		$_ = $s->getFlash('info'); if($_) $html .= $this->_drawBox($_, 'info');
+		$_ = $s->getFlash('warning');if($_) $html .= $this->_drawBox($_, 'warning');
 
 		return $html;
 	}
