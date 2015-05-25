@@ -50,6 +50,6 @@ class Panel extends Widget
 		$this->content = Html::tag('div', $this->content, ['class' => 'panel-body']);
 		$table = $this->table!==false ? $this->table : '';
 
-		return Html::tag('div', $header.$this->content.$table.$footer, ['class' => 'panel panel-'.$this->type]);
+		return Html::tag('div', $header.$this->content.$table.$footer, ['class' => 'panel panel-'.$this->type, 'id' => $this->id]);
 	}
 }
