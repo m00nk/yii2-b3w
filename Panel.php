@@ -12,6 +12,27 @@ namespace m00nk\b3w;
 use yii\helpers\Html;
 use yii\base\Widget;
 
+/**
+ * Панель из bootstrap3.
+ *
+ * Пример использования:
+ *
+ * ```php
+ * echo Panel::widget([
+ *      'title' => 'Заголовок панели',
+ *      'content' => 'Содержимое панели',
+ *
+ *      'type' => 'success',
+ *      'headerButtons' => [
+ *          'items' => [
+ *              ['label' => 'Создать', 'url' => ['create'] ]
+ *          ]
+ *      ]
+ * ]);
+ * ```
+ *
+ * @package m00nk\b3w
+ */
 class Panel extends Widget
 {
 	/** @var bool|string Заголовок панели или FALSE если не нужен */
