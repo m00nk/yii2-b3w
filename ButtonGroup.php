@@ -18,7 +18,7 @@ class ButtonGroup extends Widget
 	/** @var array массив ссылок. Формат: ['label' => '...', 'url' => '', 'linkOptions' => [...], 'items' => [...] ] */
 	public $items = [];
 
-	/** @var string тип кнопок. Варианты: 'default', 'primary', 'success', 'info', 'warning', 'danger' */
+	/** @var string тип кнопок. Варианты: 'default', 'primary', 'success', 'info', 'warning', 'danger' и '' */
 	public $type = 'default';
 
 	/** @var string размер кнопок. Варианты: 'xs', 'sm', '', 'lg'. Если используются выпадающие меню, то не стоит менять эту опцию  */
@@ -44,7 +44,7 @@ class ButtonGroup extends Widget
 		$_sizeBtnClass = in_array($this->size, ['xs', 'sm', 'lg']) ? ('btn-'.$this->size) : '';
 
 		$this->type = strtolower($this->type);
-		$_typeClass = in_array($this->type, ['default', 'success', 'danger', 'warning', 'info', 'primary']) ? ('btn-'.$this->type) : 'btn-default';
+		$_typeClass = in_array($this->type, ['default', 'success', 'danger', 'warning', 'info', 'primary']) ? ('btn-'.$this->type) : '';
 
 		$out = '';
 
