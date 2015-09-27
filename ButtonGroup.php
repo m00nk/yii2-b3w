@@ -10,6 +10,7 @@
 namespace m00nk\b3w;
 
 use yii\bootstrap\Dropdown;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\base\Widget;
 
@@ -52,11 +53,24 @@ class ButtonGroup extends Widget
 		{
 			if(isset($item['items']) && is_array($item['items']))
 			{
+				$linkOptions = [];
+				$aClasses = ['btn', $_typeClass, 'dropdown-toggle', $_sizeBtnClass];
+				if(array_key_exists('linkOptions', $item))
+				{
+					$_ = $item['linkOptions'];
+					if(array_key_exists('class', $_))
+					{
+						$aClasses = array_merge($aClasses, [$_['class']]);
+						unset($_['class']);
+					}
+					$linkOptions = array_merge($_, ['data-toggle'=>'dropdown']);
+				}
+
+				$linkOptions['class'] = implode(' ', $aClasses);
+
 				$out .= Html::tag('div',
 					Html::a(
-						$item['label'].' <span class="caret"></span>', '#',
-						['class' => 'btn '.$_typeClass.' dropdown-toggle '.$_sizeBtnClass, 'data-toggle'=>'dropdown']
-					).
+						$item['label'].' <span class="caret"></span>', '#', $linkOptions).
 					Dropdown::widget(['items' => $item['items']]),
 					['class' => 'btn-group', 'role' => 'group']);
 			}
