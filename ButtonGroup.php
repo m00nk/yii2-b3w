@@ -16,7 +16,11 @@ use yii\base\Widget;
 
 class ButtonGroup extends Widget
 {
-	/** @var array массив ссылок. Формат: ['label' => '...', 'url' => '', 'linkOptions' => [...], 'items' => [...] ] */
+	/**
+	 * @var array массив ссылок.
+	 * Формат: ['label' => '...', 'url' => '', 'linkOptions' => [...], 'items' => [...], 'encodeLabels' => true ]
+	 *            Параметр encodeLabels учитывается только для вложенных суб-меню. По-умолчанию включен.
+	 */
 	public $items = [];
 
 	/** @var string тип кнопок. Варианты: 'default', 'primary', 'success', 'info', 'warning', 'danger' и '' */
@@ -71,7 +75,7 @@ class ButtonGroup extends Widget
 				$out .= Html::tag('div',
 					Html::a(
 						$item['label'].' <span class="caret"></span>', '#', $linkOptions).
-					Dropdown::widget(['items' => $item['items']]),
+					Dropdown::widget(['items' => $item['items'], 'encodeLabels' => array_key_exists('encodeLabels', $item) ? $item['encodeLabels'] : true]),
 					['class' => 'btn-group', 'role' => 'group']);
 			}
 			else
