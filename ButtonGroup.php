@@ -18,7 +18,7 @@ class ButtonGroup extends Widget
 {
 	/**
 	 * @var array массив ссылок.
-	 * Формат: ['label' => '...', 'url' => '', 'linkOptions' => [...], 'items' => [...], 'encodeLabels' => true ]
+	 * Формат: ['label' => '...', 'url' => '', 'linkOptions' => [...], 'items' => [...], 'encodeLabels' => true, 'groupOptions' => [...] ]
 	 *            Параметр encodeLabels учитывается только для вложенных суб-меню. По-умолчанию включен.
 	 */
 	public $items = [];
@@ -72,11 +72,19 @@ class ButtonGroup extends Widget
 
 				$linkOptions['class'] = implode(' ', $aClasses);
 
+				$groupOptions = array_key_exists('groupOptions', $item) ? $item['groupOptions'] : [];
+				if(array_key_exists('class', $groupOptions))
+					$groupOptions['class'] = $groupOptions['class'].' btn-group';
+				else
+					$groupOptions['class'] = 'btn-group';
+				
+				$groupOptions['role'] = 'group';
+
 				$out .= Html::tag('div',
 					Html::a(
 						$item['label'].' <span class="caret"></span>', '#', $linkOptions).
 					Dropdown::widget(['items' => $item['items'], 'encodeLabels' => array_key_exists('encodeLabels', $item) ? $item['encodeLabels'] : true]),
-					['class' => 'btn-group', 'role' => 'group']);
+					$groupOptions);
 			}
 			else
 			{
